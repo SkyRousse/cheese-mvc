@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+    <div th:replace="fragments :: page-title"></div>
+    <nav th:replace="fragments :: nav"></nav>
+    <div class="container">
+        <p th:unless="${cheeses} and ${cheeses.size()}">no cheese :(</p>
+        <div th:if="${cheeses} and ${cheeses.size()}" class="table-responsive">
+            <h3>Select the cheeses you'd like to remove</h3>
+            <form method="post" class="remove-cheeses">
+                <table>
+                    <th>Select</th>
+                    <th>Cheese Name</th>
+                    <th>Description</th>
+                    <tr th:each="cheese: ${cheeses}">
+                        <td><input type="checkbox" name="removeCheese" th:value="${cheese.key}"/></td>
+                        <td th:text="${cheese.key}">Key</td>
+                        <td th:text="${cheese.value}">Value</td>
+                    </tr>
+                </table>
+                <input type="submit" value="Remove Cheeses" class="btn btn-danger" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -2,12 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-    <h1 th:text="${title}"></h1>
+    <div th:replace="fragments :: page-title"></div>
     <nav th:replace="fragments :: nav"></nav>
-    <form method="POST">
-        <input type="text" name="cheeseName" />
-        <input type="submit" value="Add Cheese" />
-    </form>
-
+    <div class="container">
+        <div class="table-responsive">
+            <h3>Add a new cheese to your list</h3>
+            <form method="POST">
+                <table>
+                    <th>Cheese Name</th>
+                    <th>Description</th>
+                    <tr>
+                        <td><input type="text" name="cheeseName" /></td>
+                        <td><input type="text" name="cheeseDescription" /></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Add Cheese" class="btn btn-success"/>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

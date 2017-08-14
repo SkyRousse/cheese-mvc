@@ -2,14 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-    <h1 th:text="${title}">Default Title</h1>
+    <div th:replace="fragments :: page-title"></div>
     <nav th:replace="fragments :: nav"></nav>
-
-    <p th:unless="${cheeses} and ${cheeses.size()}">no cheese :(</p>
-
-    <ul>
-        <li th:each="cheese : ${cheeses}" th:text="${cheese}"></li>
-    </ul>
-
+    <div class="container">
+        <p th:unless="${cheeses} and ${cheeses.size()}">no cheese :(</p>
+        <div th:if="${cheeses} and ${cheeses.size()}" class="table-responsive">
+            <h3>Here's your list of cheeses</h3>
+            <table>
+                <th>Cheese Name</th>
+                <th>Description</th>
+                <tr th:each="cheese: ${cheeses}">
+                    <td th:text="${cheese.key}">Key</td>
+                    <td th:text="${cheese.value}">Value</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
