@@ -9,11 +9,13 @@
         <div th:if="${cheeses} and ${cheeses.size()}" class="table-responsive">
             <h3>Here's your list of cheeses</h3>
             <table>
+                <th></th>
                 <th>Cheese Name</th>
                 <th>Description</th>
-                <tr th:each="cheese: ${cheeses}">
-                    <td th:text="${cheese.key}">Key</td>
-                    <td th:text="${cheese.value}">Value</td>
+                <tr th:each="cheese : ${cheeses}">
+                    <td><a th:href="@{'/cheese/edit/' + ${cheese.getId()}}">edit</a></td>
+                    <td th:text="${cheese.name}"></td>
+                    <td th:text="${cheese.description}"></td>
                 </tr>
             </table>
         </div>

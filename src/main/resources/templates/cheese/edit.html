@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<div th:replace="fragments :: page-title"></div>
+<nav th:replace="fragments :: nav"></nav>
+<div class="container">
+    <div class="table-responsive">
+        <h3 th:text="${cheese.name} + ' (id = ' + ${cheese.id} + ' )'"></h3>
+        <form method="POST">
+            <table>
+                <th>Cheese Name</th>
+                <th>Description</th>
+                <tr>
+                    <input th:type="hidden" th:value="${cheese.getId()}" name="cheeseId" />
+                    <td><input type="text" name="name" th:value="${cheese.name}"/></td>
+                    <td><input type="text" name="description" th:value="${cheese.description}"/></td>
+                </tr>
+            </table>
+            <input type="submit" value="Update Cheese" class="btn btn-success"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>
