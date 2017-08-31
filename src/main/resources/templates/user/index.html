@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<div th:replace="fragments :: page-title"></div>
+<nav th:replace="fragments :: nav"></nav>
+<div class="container">
+    <p th:unless="${user}">You need to sign up</p>
+    <div th:if="${user}">
+        <h3 th:text="${'Welcome ' + name + '!'}"></h3>
+    </div>
+</div>
+</body>
+</html>
