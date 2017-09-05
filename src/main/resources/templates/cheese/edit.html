@@ -7,14 +7,20 @@
 <div class="container">
     <div class="table-responsive">
         <h3 th:text="${cheese.name} + ' (id = ' + ${cheese.id} + ' )'"></h3>
-        <form method="POST">
+        <form method="POST" th:object="${cheese}">
             <table>
                 <th>Cheese Name</th>
                 <th>Description</th>
+                <th>Type</th>
                 <tr>
-                    <input th:type="hidden" th:value="${cheese.getId()}" name="cheeseId" />
-                    <td><input type="text" name="name" th:value="${cheese.name}"/></td>
-                    <td><input type="text" name="description" th:value="${cheese.description}"/></td>
+                    <input th:type="hidden" th:field="*{id}" />
+                    <td><input th:field="*{name}"/><p th:errors="*{name}" class="errors"></p></td>
+                    <td><input th:field="*{description}"/><p th:errors="*{description}" class="errors"></p></td>
+                    <td>
+                        <select th:field="*{type}">
+                            <option th:each="cheeseType : ${cheeseTypes}" th:text="${cheeseType.name}" th:value="${cheeseType}"></option>
+                        </select>
+                    </td>
                 </tr>
             </table>
             <input type="submit" value="Update Cheese" class="btn btn-success"/>

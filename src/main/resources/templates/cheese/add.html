@@ -7,13 +7,19 @@
     <div class="container">
         <div class="table-responsive">
             <h3>Add a new cheese to your list</h3>
-            <form method="POST">
+            <form method="POST" th:object="${cheese}">
                 <table>
                     <th>Cheese Name</th>
                     <th>Description</th>
+                    <th>Type</th>
                     <tr>
-                        <td><input type="text" name="name" /></td>
-                        <td><input type="text" name="description" /></td>
+                        <td><input th:field="*{name}" /><p th:errors="*{name}" class="errors"></p></td>
+                        <td><input th:field="*{description}" /><p th:errors="*{description}" class="errors"></p></td>
+                        <td>
+                            <select th:field="*{type}">
+                                <option th:each="cheeseType : ${cheeseTypes}" th:text="${cheeseType.getName()}" th:value="${cheeseType}"></option>
+                            </select>
+                        </td>
                     </tr>
                 </table>
                 <input type="submit" value="Add Cheese" class="btn btn-success"/>
